@@ -1,0 +1,14 @@
+{% extends "home.html" %}
+
+{% block content %}
+<section class="display">
+    <h1 class="hotel_heading">Hotel Details</h1>
+    {% for entry in entries %}
+    <article class="entry">
+        <p class="entry_content">Hotel Name:{{ entry[0] }}</p>
+        <p class="entry_content">Hotel Address:{{ entry[1] }}</p>
+        <p class="entry_content">Average cost:{{ entry[2] }}/per day</p>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

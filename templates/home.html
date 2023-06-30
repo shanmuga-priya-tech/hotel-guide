@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel-guide</title>
+    <link rel="stylesheet" href="\static\css\style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+    {% block head%}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="heading">
+        <img class="logo"src="\static\hotel.png" alt="hotel-logo"/>
+        <a class="header_logo" href="{{url_for('home')}}" >Hotel-guide</a></div>
+
+        <div class="header_menu">
+            <a  href="{{url_for('add_new')}}" class="header_link">+ Add new</a>
+            <a href="{{url_for('view')}}" class="header_link">view</a>
+            <a  href="{{url_for('update')}}" class="header_link">update</a>
+            <a  href="{{url_for('delete')}}" class="header_link">delete</a>
+        </div>
+    </header>
+    
+    <main class="main">
+        {% block content %}
+        <div class="content-container">
+            <div class="left-content">
+                <p>Welcome to Hotel Guide, your ultimate resource for finding detailed information about various hotels. Whether you're planning a vacation, a business trip, or simply looking for a comfortable stay, Hotel Guide is here to assist you in making informed decisions.</p>
+                <p>With Hotel Guide, you can explore a wide range of hotels, from budget-friendly options to luxurious resorts. Our carefully curated list features hotels from various destinations, ensuring that you'll find options suited to your preferences and needs.</p>
+                <p>Plan your next trip with confidence and ease by using Hotel Guide. We strive to provide accurate and up-to-date information to ensure that your stay is comfortable and memorable.</p>
+            </div>
+            <div class="right-content">
+              <img src="\static\home.jpg" alt="hotel-image">
+            </div>
+          </div>
+        {% endblock %}
+    </main>
+    
+</body>
+</html>

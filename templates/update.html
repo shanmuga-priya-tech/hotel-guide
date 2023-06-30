@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="form_table">
+    <form class="form" action="/update" method ="POST">
+        <label class="title">Username:</label>
+            <input class="input-field" type="text" name="username" id="username"><br>
+
+        <label class="title">Hotel Name:</label>
+            <input type="text" class="input-field" name="hotel" id="hotel"><br>
+
+        <label class="title">Hotel Address:</label>
+        <textarea name="address" class="input" id="address" rows="5" placeholder="Enter Hotel Address"></textarea><br>
+
+        <label class="title">average cost:</label>
+            <input type="number" class="input-field" name="cost" id="cost"><br>
+
+        <button type="submit" value="add" class="submit-btn" >Update</button>
+    </form>
+</div>
+{% endblock %}

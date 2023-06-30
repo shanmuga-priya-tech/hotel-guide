@@ -1,0 +1,133 @@
+body{
+    background-color: rgb(231, 243, 255);
+}
+.header{
+    display: flex;
+    justify-content: space-between; 
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 6px;
+    padding: 5px 20px 5px 20px;
+    height:60px;
+    margin-bottom: 30px;
+}
+.header_logo{
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+    font-size: 32px;
+}
+.header_logo:hover{
+    color: rgb(144, 191, 238);
+}
+.logo{
+    max-width: 750px;
+    max-height: 45px;
+    margin-right: 5px;
+}
+.heading{
+    display: flex;
+    align-items: center;
+}
+.header_menu{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    
+} 
+.header_link{
+    margin-right: 20px;
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+.header_link:hover{
+    color: rgb(144, 191, 238);
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    
+}
+.form_table{
+    display: flex; 
+    margin: 0 auto;
+    padding: 30px 10px 10px 10px;
+    background-color: rgb(143, 199, 252);
+    width: 300px;
+    height: 400px;
+    border: 1px solid rgb(143, 199, 252);
+    border-radius: 6px;
+}
+.title{
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+}
+.input-field,.input {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: #fffcfc;
+}
+.input{
+    font-size: 18px;
+    height: 120px;
+    resize: none;
+}
+.submit-btn{
+    padding: 10px 30px; 
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    border-radius: 30px;
+    border: none;  
+}
+.display{
+    max-width: 650px;
+    margin:0 auto;
+}
+.hotel_heading{
+    display:flex;
+    width: inherit;
+    color:rgb(22, 101, 175);
+    font-size: 32px;
+
+}
+.entry_content{
+    font-size: 18px;
+    font-weight: 600;
+    padding:0 16px;
+}
+.entry{
+    margin-top: 15px;
+    /* border-bottom: 1px solid #ccc; */
+    border: dotted 3px rgb(22, 101, 175) ;
+    padding-bottom: 1px;
+    background-color:rgb(191, 222, 252) ;
+}
+.content-container {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    
+}
+  
+.left-content {
+    flex: 1;
+    font-size: 22px;
+  }
+  
+.right-content {
+    flex: 1;
+  }
+  
+.right-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+  
