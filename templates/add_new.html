@@ -3,9 +3,6 @@
 {% block content %}
 <div class="form_table">
     <form class="form" action="/add" method ="POST">
-        <label class="title">Username:</label>
-            <input class="input-field" type="text" name="username" id="username"><br>
-
         <label class="title">Hotel Name:</label>
             <input type="text" class="input-field" name="hotel" id="hotel"><br>
 
@@ -14,6 +11,7 @@
 
         <label class="title">average cost:</label>
             <input type="number" class="input-field" name="cost" id="cost"><br>
+            <input type="hidden" class="time" value="{{ time }}">
 
         <button type="submit" value="add" class="submit-btn" >Add</button>
     </form>
