@@ -1,13 +1,18 @@
+import secrets
 import os
-from flask import Flask,render_template,request
-from pymongo import MongoClient
+from flask import Flask,render_template,request,redirect,flash,url_for
+from pymongo import MongoClient,DESCENDING
 from dotenv import load_dotenv
+from datetime import datetime
 
 
 load_dotenv()
+secret_key = secrets.token_hex(32)
+
 
 def create_app():
     app=Flask(__name__)
+    app.secret_key = secret_key
     client=MongoClient(os.getenv("MONGODB_URI"))
     app.db=client.hotel
 
@@ -18,36 +23,40 @@ def create_app():
     @app.route("/add" ,methods =["GET","POST"] )
     def add_new():
         if request.method == "POST":
-            username=request.form.get("username")
             hotel=request.form.get("hotel")
-            Address=request.form.get("address")
+            address=request.form.get("address")
             price=request.form.get("cost")
-            app.db.hotel_details.insert_one({"username":username,
+            time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            app.db.hotel_details.insert_one ({
                                             "hotel":hotel,
-                                            "address":Address,
-                                            "cost":price})
-        return render_template("add_new.html",title="AddNew")
+                                            "address":address,
+                                            "cost":price,
+                                            "time":time}) 
+            flash("Added successfully!") 
+            return redirect(url_for("view"))
 
-    @app.route("/view")
+                                        
+        return render_template("add_new.html")
+
+    @app.route("/view",methods=["GET","POST"])
     def view():
         hotelinfo=[
                         (entry["hotel"], 
                         entry["address"],
-                        entry["cost"]  
-                        )
-                    for entry in app.db.hotel_details.find({})
-                    ]
-            
+                        entry ["cost"],
+                        entry["time"]
+                        )   
+                    for entry in app.db.hotel_details.find({}).sort("time",DESCENDING)
+                    ]       
         return render_template("display.html",entries=hotelinfo)
 
     @app.route("/update",methods=["GET","POST"])
     def update():
         if request.method == "POST":
-            username=request.form.get("username")
             hotel=request.form.get("hotel")
             Address=request.form.get("address")
             price=request.form.get("cost")
-            user=app.db.hotel_details.find_one({"username":username})
+            user=app.db.hotel_details.find_one({"hotel":hotel})
             
             if user:
                 updated_value= {
@@ -57,13 +66,12 @@ def create_app():
                             "cost": price
                         }}
 
-                updated = app.db.hotel_details.update_one({"username": username}, updated_value)
+                updated = app.db.hotel_details.update_one({"hotel":hotel}, updated_value)
+                flash("Updated successfully!") 
+                return redirect(url_for("view"))
                 
-                return render_template("update.html", user=user)
             else:
                 return render_template("home.html")
-            
-
         return render_template("update.html")
             
         
@@ -71,16 +79,17 @@ def create_app():
     def delete():
         
         if request.method == "POST":
-            username=request.form.get("username")
             hotel=request.form.get("hotel")
             Address=request.form.get("address")
             price=request.form.get("cost")
-            user=app.db.hotel_details.find_one({"username":username})
+            user=app.db.hotel_details.find_one({"hotel":hotel})
             
             if user:
-                deleted = app.db.hotel_details.delete_one({"username": username})
+                app.db.hotel_details.delete_one({"hotel":hotel})
+
+                flash("Deleted successfully!") 
+                return redirect(url_for("view"))
                 
-                return render_template("delete.html")
             else:
                 return render_template("home.html")
             
