@@ -1,14 +1,26 @@
 {% extends "home.html" %}
 
 {% block content %}
+
 <section class="display">
+    {% set messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">{{ messages[0] }}</div>
+        {% endif %}
     <h1 class="hotel_heading">Hotel Details</h1>
     {% for entry in entries %}
     <article class="entry">
         <p class="entry_content">Hotel Name:{{ entry[0] }}</p>
         <p class="entry_content">Hotel Address:{{ entry[1] }}</p>
         <p class="entry_content">Average cost:{{ entry[2] }}/per day</p>
+        <form method="post">
+            <div class="button-group">
+            <button type="submit"  value="update" class="submit-btn"><a href="{{url_for('update')}}" >update</a></button>
+            <button type="submit"  value="delete" class="submit-btn"><a href="{{url_for('delete')}}" >delete</a></button>
+        </div>
+        </form>
     </article>
     {% endfor %}
+    
 </section>
 {% endblock %}
